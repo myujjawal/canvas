@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
-
+import Canvas from "./components/Canvas";
 function App() {
   const sidebarRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
@@ -47,7 +47,9 @@ function App() {
           style={{ width: sidebarWidth }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          <div className="app-sidebar-content">{/* <h1>Hello</h1> */}</div>
+          {/* <div className="app-sidebar-content"> */}
+          <Canvas className="app-sidebar-content" />
+          {/* </div> */}
           <div className="app-sidebar-resizer" onMouseDown={startResizing} />
         </div>
         <div className="app-frame">{/* <h1>World</h1> */}</div>
