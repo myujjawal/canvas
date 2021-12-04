@@ -7,8 +7,8 @@ import Box from "@material-ui/core/Box";
 
 import "./properties.css";
 
-const PropertiesPanel = ({ x, y }) => {
-  const [color, setcolor] = React.useState("");
+const PropertiesPanel = ({ x, y, color, setcolor }) => {
+  //   const [color, setcolor] = React.useState("");
 
   const handleChange = (event) => {
     setcolor(event.target.value);
@@ -27,9 +27,9 @@ const PropertiesPanel = ({ x, y }) => {
             label="Color"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"red"}>Red</MenuItem>
+            <MenuItem value={"blue"}>Blue</MenuItem>
+            <MenuItem value={"green"}>Green</MenuItem>
           </Select>
         </FormControl>
       </Box>

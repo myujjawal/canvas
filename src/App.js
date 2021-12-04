@@ -5,7 +5,7 @@ import Navbar from "./components/navbar";
 import Canvas from "./components/Canvas";
 import PropertiesPanel from "./components/PropertiesPanel";
 function App() {
-  //Making the panel Resizable
+  //****************** Making the panel Resizable **********************
   const sidebarRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(268);
@@ -42,14 +42,16 @@ function App() {
   //Defining the state of the App
   const [x, setX] = useState(1);
   const [y, setY] = useState(0);
+  const [box, setBox] = useState(1);
+  const [color, setcolor] = React.useState("orange");
+  console.log(color);
   const boxClicked = (position) => {
-    console.log(position.x);
     setX(position.x);
     setY(position.y);
   };
   return (
     <div className="app-container">
-      <Navbar />
+      <Navbar name={box === 1 ? "Box 1" : "Box 2"} />
       <div className="main-container">
         <div
           ref={sidebarRef}
@@ -57,11 +59,17 @@ function App() {
           style={{ width: sidebarWidth }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          <Canvas className="app-sidebar-content" boxClicked={boxClicked} />
+          <Canvas
+            className="app-sidebar-content"
+            boxClicked={boxClicked}
+            box={box}
+            setBox={setBox}
+            color={color}
+          />
           <div className="app-sidebar-resizer" onMouseDown={startResizing} />
         </div>
         <div className="app-frame">
-          <PropertiesPanel x={x} y={y} />
+          <PropertiesPanel x={x} y={y} color={color} setcolor={setcolor} />
         </div>
       </div>
     </div>
