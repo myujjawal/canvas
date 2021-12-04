@@ -3,7 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
 import Canvas from "./components/Canvas";
+import PropertiesPanel from "./components/PropertiesPanel";
 function App() {
+  //Making the panel Resizable
   const sidebarRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
   const [sidebarWidth, setSidebarWidth] = useState(268);
@@ -36,7 +38,15 @@ function App() {
       window.removeEventListener("mouseup", stopResizing);
     };
   }, [resize, stopResizing]);
-
+  //***************************************************************  */
+  //Defining the state of the App
+  const [x, setX] = useState(1);
+  const [y, setY] = useState(0);
+  const boxClicked = (position) => {
+    console.log(position.x);
+    setX(position.x);
+    setY(position.y);
+  };
   return (
     <div className="app-container">
       <Navbar />
@@ -47,12 +57,12 @@ function App() {
           style={{ width: sidebarWidth }}
           onMouseDown={(e) => e.preventDefault()}
         >
-          {/* <div className="app-sidebar-content"> */}
-          <Canvas className="app-sidebar-content" />
-          {/* </div> */}
+          <Canvas className="app-sidebar-content" boxClicked={boxClicked} />
           <div className="app-sidebar-resizer" onMouseDown={startResizing} />
         </div>
-        <div className="app-frame">{/* <h1>World</h1> */}</div>
+        <div className="app-frame">
+          <PropertiesPanel x={x} y={y} />
+        </div>
       </div>
     </div>
   );

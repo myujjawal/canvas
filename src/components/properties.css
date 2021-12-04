@@ -1,0 +1,13 @@
+/* center a div */
+
+.panel {
+    margin:  auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
+.item{
+    margin-bottom: 20px;
+    font-size: x-large;
+}
